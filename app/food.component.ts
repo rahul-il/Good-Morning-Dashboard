@@ -9,8 +9,6 @@ import 'rxjs/add/operator/toPromise';
     <br/>
     <div class="panel panel-default">
         <div class="panel-body">
-            <h3 style="text-align:center">Entrees</h3>
-
             <div class="row">
                 <div class="col-md-4" *ngFor="let meal of meals">
                     <b style="text-align:center">{{meal.title}}</b>
