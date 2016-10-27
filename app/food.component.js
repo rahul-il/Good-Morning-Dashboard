@@ -15,6 +15,13 @@ var FoodComponent = (function () {
     function FoodComponent(http) {
         this.http = http;
         this.meals = [];
+        this.knightEntrees = [
+            { 'title': '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers'] },
+            { 'title': 'Hamburger Bun 4"', 'entrees': ['Hamburger', 'Hot Dogs'] },
+            { 'title': 'Bbq Chicken Wings', 'entrees': ['Barbeque Chicken Wings', 'CHicken Nuggets', 'Honey Glazed Chicken Wings'] },
+            { 'title': 'Chicken Parmesan Busch', 'entrees': ['Chicken Parmesan', 'Eggplant Parmesan', 'Italian Sausage'] },
+            { 'title': 'Chicken Buffalo Wings Fresh', 'entrees': ['Buffalo Wings', 'Chicken Nuggets', 'Vegan Nuggets'] }
+        ];
     }
     FoodComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -40,6 +47,15 @@ var FoodComponent = (function () {
                     var genre = _c[_b];
                     if (genre['genre_name'].indexOf('Entrees') > -1 || genre['genre_name'] == "Knight Room") {
                         entrees = genre['items'];
+                    }
+                }
+                //substitute for shorter Knight Room Entrees
+                if (meal["meal_name"] == "Knight Room") {
+                    for (var _d = 0, _e = this.knightEntrees; _d < _e.length; _d++) {
+                        var knightEntree = _e[_d];
+                        if (entrees.indexOf(knightEntree.title) > -1) {
+                            entrees = knightEntree.entrees;
+                        }
                     }
                 }
                 if (entrees != null) {

@@ -23,6 +23,14 @@ export class FoodComponent implements OnInit{
 
     meals = [];
 
+    knightEntrees = [
+        {'title' : '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers']},
+        {'title' : 'Hamburger Bun 4"', 'entrees':  ['Hamburger', 'Hot Dogs']},
+        {'title' : 'Bbq Chicken Wings', 'entrees':  ['Barbeque Chicken Wings', 'CHicken Nuggets', 'Honey Glazed Chicken Wings']},
+        {'title' : 'Chicken Parmesan Busch', 'entrees':  ['Chicken Parmesan', 'Eggplant Parmesan', 'Italian Sausage' ]},
+        {'title' : 'Chicken Buffalo Wings Fresh', 'entrees':  ['Buffalo Wings', 'Chicken Nuggets', 'Vegan Nuggets']}
+    ]
+
     constructor(private http: Http){
     }
 
@@ -54,6 +62,15 @@ export class FoodComponent implements OnInit{
                 for (let genre of meal['genres']){
                     if (genre['genre_name'].indexOf('Entrees') > -1 || genre['genre_name'] == "Knight Room"){
                         entrees = genre['items'];
+                    }
+                }
+
+                //substitute for shorter Knight Room Entrees
+                if (meal["meal_name"] == "Knight Room"){
+                    for (let knightEntree of this.knightEntrees){
+                        if (entrees.indexOf(knightEntree.title) > -1){
+                            entrees = knightEntree.entrees;
+                        }
                     }
                 }
 
