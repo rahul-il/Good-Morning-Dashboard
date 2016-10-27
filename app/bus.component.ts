@@ -14,18 +14,20 @@ import { Stop } from './stop';
                 <!-- <h3 style="text-align:center">{{stop.title}}</h3> -->
                 <div class="row" *ngFor="let route of stop.routes">
                     <div class="col-md-6">
-                        <p style="font-size:1.5em">
-                            <b>{{route.title}}</b>
+                        <p>
+                            <b style="font-size:2em; vertical-align:middle">{{route.title}}</b>
+                            &nbsp;&nbsp;<b [style.color]="route.firstPredictionColor()" style="font-size:1.5em; vertical-align:middle">{{route.firstPrediction()}} min</b> <br/>
                         </p>
                     </div>
 
                     <div class="col-md-6" style="text-align:right">
-                        <p style="font-size:1.2em" >
-                            <b [style.color]="route.firstPredictionColor()">{{route.firstPrediction()}} min</b> <br/>
-                            <span style="color:#373D3F"> {{route.tailPredictions()}} min </span>
+                        <p style="color:#373D3F">
+                            <span style="font-size:2em; vertical-align:middle">&nbsp;</span>
+                            <span style="font-size:1.5em; vertical-align:middle">{{route.tailPredictions()}} min &nbsp;</span>
                         </p>
+                        
                     </div>
-                    <hr />
+                    <hr /> <br/>
                 </div>
                         
             </div>
