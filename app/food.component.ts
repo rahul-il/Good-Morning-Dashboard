@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
     <br/>
     <div class="panel panel-default">
         <div class="panel-body">
+            <p *ngIf="meals.length == 0">Loading meals from Busch Dining Hall</p>
             <div class="row">
                 <div class="col-md-4" *ngFor="let meal of meals">
                     <b style="text-align:center">{{meal.title}}</b>
@@ -17,11 +18,16 @@ import 'rxjs/add/operator/toPromise';
             </div>
         </div>
     </div>
+    <br/>
+    <b *ngIf="target != ''">{{target}}: </b> {{insult}}
   `
 })
 export class FoodComponent implements OnInit{
 
     meals = [];
+    people = ["Meher", "Charlotte", "Mikio", "Tristen", "Nick"];
+    target = "";
+    insult = "";
 
     knightEntrees = [
         {'title' : '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers']},
@@ -36,8 +42,9 @@ export class FoodComponent implements OnInit{
 
     ngOnInit(){
         this.updateFood();
+        this.updateInsult();
         setInterval(() => { this.updateFood();}, 10000);
-        
+        setInterval(() => { this.updateInsult();}, 43200000);
     }
 
 
@@ -46,6 +53,24 @@ export class FoodComponent implements OnInit{
                 .toPromise()
                 .then(response => this.setFood(response.text()))
                 .catch();
+
+        
+    }
+
+    updateInsult(){
+        this.http.get("https://crossorigin.me/http://www.insultgenerator.org/")
+                .toPromise()
+                .then(response => this.setInsult(response.text()))
+                .catch();
+    }
+
+    setInsult(text){
+        let el = document.createElement('html');
+        el.innerHTML = text;
+
+        this.insult = el.getElementsByClassName("wrap")[0].textContent.trim();
+        this.target = this.people[this.insult.length % this.people.length];
+
     }
 
     setFood(text){

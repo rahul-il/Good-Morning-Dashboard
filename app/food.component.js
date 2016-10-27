@@ -15,6 +15,9 @@ var FoodComponent = (function () {
     function FoodComponent(http) {
         this.http = http;
         this.meals = [];
+        this.people = ["Meher", "Charlotte", "Mikio", "Tristen", "Nick"];
+        this.target = "";
+        this.insult = "";
         this.knightEntrees = [
             { 'title': '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers'] },
             { 'title': 'Hamburger Bun 4"', 'entrees': ['Hamburger', 'Hot Dogs'] },
@@ -26,7 +29,9 @@ var FoodComponent = (function () {
     FoodComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.updateFood();
+        this.updateInsult();
         setInterval(function () { _this.updateFood(); }, 10000);
+        setInterval(function () { _this.updateInsult(); }, 43200000);
     };
     FoodComponent.prototype.updateFood = function () {
         var _this = this;
@@ -34,6 +39,19 @@ var FoodComponent = (function () {
             .toPromise()
             .then(function (response) { return _this.setFood(response.text()); })
             .catch();
+    };
+    FoodComponent.prototype.updateInsult = function () {
+        var _this = this;
+        this.http.get("https://crossorigin.me/http://www.insultgenerator.org/")
+            .toPromise()
+            .then(function (response) { return _this.setInsult(response.text()); })
+            .catch();
+    };
+    FoodComponent.prototype.setInsult = function (text) {
+        var el = document.createElement('html');
+        el.innerHTML = text;
+        this.insult = el.getElementsByClassName("wrap")[0].textContent.trim();
+        this.target = this.people[this.insult.length % this.people.length];
     };
     FoodComponent.prototype.setFood = function (text) {
         this.meals = [];
@@ -79,7 +97,7 @@ var FoodComponent = (function () {
     FoodComponent = __decorate([
         core_1.Component({
             selector: 'food',
-            template: "\n    <br/>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-body\">\n            <div class=\"row\">\n                <div class=\"col-md-4\" *ngFor=\"let meal of meals\">\n                    <b style=\"text-align:center\">{{meal.title}}</b>\n                        <p *ngFor=\"let entree of meal['entrees']\">{{entree}}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n  "
+            template: "\n    <br/>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-body\">\n            <p *ngIf=\"meals.length == 0\">Loading meals from Busch Dining Hall</p>\n            <div class=\"row\">\n                <div class=\"col-md-4\" *ngFor=\"let meal of meals\">\n                    <b style=\"text-align:center\">{{meal.title}}</b>\n                        <p *ngFor=\"let entree of meal['entrees']\">{{entree}}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br/>\n    <b *ngIf=\"target != ''\">{{target}}: </b> {{insult}}\n  "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], FoodComponent);
