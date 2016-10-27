@@ -34,7 +34,7 @@ var FoodComponent = (function () {
         var busch = this.getBusch(data);
         for (var _i = 0, _a = busch["meals"]; _i < _a.length; _i++) {
             var meal = _a[_i];
-            if (["Knight Room", "Lunch", "Dinner"].indexOf(meal["meal_name"]) > -1) {
+            if (meal['genres'] && ["Knight Room", "Lunch", "Dinner"].indexOf(meal["meal_name"]) > -1) {
                 var entrees = null;
                 for (var _b = 0, _c = meal['genres']; _b < _c.length; _b++) {
                     var genre = _c[_b];

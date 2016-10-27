@@ -50,7 +50,7 @@ export class FoodComponent implements OnInit{
 
         for (let meal of busch["meals"]){
 
-            if (["Knight Room", "Lunch", "Dinner"].indexOf(meal["meal_name"]) > -1){
+            if (meal['genres'] && ["Knight Room", "Lunch", "Dinner"].indexOf(meal["meal_name"]) > -1){
                 let entrees = null;
 
                 for (let genre of meal['genres']){
