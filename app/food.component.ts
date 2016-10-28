@@ -18,8 +18,8 @@ import 'rxjs/add/operator/toPromise';
             </div>
         </div>
     </div>
-    <br/>
-    <b *ngIf="target != ''">{{target}}: </b> {{insult}}
+    
+    <p style="text-align:center"><b *ngIf="target != ''">{{target}}: </b> {{insult}}</p>
   `
 })
 export class FoodComponent implements OnInit{
