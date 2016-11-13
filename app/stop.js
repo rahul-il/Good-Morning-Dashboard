@@ -6,6 +6,8 @@ var Stop = (function () {
         var parser = new DOMParser();
         var xmlDoc = parser.parseFromString(xmlText, "text/xml");
         var predictionsTag = xmlDoc.getElementsByTagName("predictions");
+        console.log(JSON.stringify(xmlText));
+        console.log(xmlDoc);
         for (var _i = 0, predictionsTag_1 = predictionsTag; _i < predictionsTag_1.length; _i++) {
             var prediction = predictionsTag_1[_i];
             this.title = prediction.getAttribute("stopTitle");

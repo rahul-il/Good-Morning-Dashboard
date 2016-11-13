@@ -16,7 +16,7 @@ var BusComponent = (function () {
     function BusComponent(http) {
         this.http = http;
         this.stops = [];
-        this.stopIds = ['1008'];
+        this.stopIds = ['1008', '1056'];
         for (var _i = 0, _a = this.stopIds; _i < _a.length; _i++) {
             var stopId = _a[_i];
             this.stops.push(null);
@@ -43,7 +43,7 @@ var BusComponent = (function () {
     BusComponent = __decorate([
         core_1.Component({
             selector: 'bus',
-            template: "\n    <div *ngFor=\"let stop of stops\">\n        <br/>\n        <div class=\"panel panel-default\" *ngIf=\"stop != null\">\n            <div class=\"panel-body\">\n                <!-- <h3 style=\"text-align:center\">{{stop.title}}</h3> -->\n                <div class=\"row\" *ngFor=\"let route of stop.routes\">\n                    <div class=\"col-md-6\">\n                        <p>\n                            <b style=\"font-size:2em; vertical-align:middle\">{{route.title}}</b>\n                            &nbsp;&nbsp;<b [style.color]=\"route.firstPredictionColor()\" style=\"font-size:1.5em; vertical-align:middle\">{{route.firstPrediction()}} min</b> <br/>\n                        </p>\n                    </div>\n\n                    <div class=\"col-md-6\" style=\"text-align:right\">\n                        <p style=\"color:#373D3F\">\n                            <span style=\"font-size:2em; vertical-align:middle\">&nbsp;</span>\n                            <span style=\"font-size:1.5em; vertical-align:middle\">{{route.tailPredictions()}} min &nbsp;</span>\n                        </p>\n                        \n                    </div>\n                    <hr /> <br/>\n                </div>\n                        \n            </div>\n        </div>\n    </div>\n  "
+            template: "\n    \n        <br/>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-body\">\n            <div *ngFor=\"let stop of stops\">\n                <span *ngIf=\"stop\">\n                    <div class=\"row\" *ngFor=\"let route of stop.routes\">\n                        <div class=\"col-md-6\">\n                            <p>\n                                <b style=\"font-size:2em; vertical-align:middle\">{{route.title}}</b>\n                                &nbsp;&nbsp;<b [style.color]=\"route.firstPredictionColor()\" style=\"font-size:1.5em; vertical-align:middle\">{{route.firstPrediction()}} min</b> <br/>\n                            </p>\n                        </div>\n\n                        <div class=\"col-md-6\" style=\"text-align:right\">\n                            <p style=\"color:#373D3F\">\n                                <span style=\"font-size:2em; vertical-align:middle\">&nbsp;</span>\n                                <span style=\"font-size:1.5em; vertical-align:middle\">{{route.tailPredictions()}} min &nbsp;</span>\n                            </p>\n                            \n                        </div>\n                        <hr /> <br/>\n                    </div>\n                </span>\n            </div>\n        </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], BusComponent);

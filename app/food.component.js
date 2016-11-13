@@ -97,7 +97,7 @@ var FoodComponent = (function () {
     FoodComponent = __decorate([
         core_1.Component({
             selector: 'food',
-            template: "\n    <br/>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-body\">\n            <p *ngIf=\"meals.length == 0\">Loading meals from Busch Dining Hall</p>\n            <div class=\"row\">\n                <div class=\"col-md-4\" *ngFor=\"let meal of meals\">\n                    <b style=\"text-align:center\">{{meal.title}}</b>\n                        <p *ngFor=\"let entree of meal['entrees']\">{{entree}}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br/>\n    <b *ngIf=\"target != ''\">{{target}}: </b> {{insult}}\n  "
+            template: "\n    <br/>\n    <div class=\"panel panel-default\">\n        <div class=\"panel-body\">\n            <p *ngIf=\"meals.length == 0\">Loading meals from Busch Dining Hall</p>\n            <div class=\"row\">\n                <div class=\"col-md-4\" *ngFor=\"let meal of meals\">\n                    <b style=\"text-align:center\">{{meal.title}}</b>\n                        <p *ngFor=\"let entree of meal['entrees']\">{{entree}}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <span style=\"text-align:center\"><b *ngIf=\"target != ''\">{{target}}: </b> {{insult}}</span>\n  "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], FoodComponent);

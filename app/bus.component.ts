@@ -7,29 +7,30 @@ import { Stop } from './stop';
 @Component({
   selector: 'bus',
   template: `
-    <div *ngFor="let stop of stops">
+    
         <br/>
-        <div class="panel panel-default" *ngIf="stop != null">
-            <div class="panel-body">
-                <!-- <h3 style="text-align:center">{{stop.title}}</h3> -->
-                <div class="row" *ngFor="let route of stop.routes">
-                    <div class="col-md-6">
-                        <p>
-                            <b style="font-size:2em; vertical-align:middle">{{route.title}}</b>
-                            &nbsp;&nbsp;<b [style.color]="route.firstPredictionColor()" style="font-size:1.5em; vertical-align:middle">{{route.firstPrediction()}} min</b> <br/>
-                        </p>
-                    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div *ngFor="let stop of stops">
+                <span *ngIf="stop">
+                    <div class="row" *ngFor="let route of stop.routes">
+                        <div class="col-md-6">
+                            <p>
+                                <b style="font-size:2em; vertical-align:middle">{{route.title}}</b>
+                                &nbsp;&nbsp;<b [style.color]="route.firstPredictionColor()" style="font-size:1.5em; vertical-align:middle">{{route.firstPrediction()}} min</b> <br/>
+                            </p>
+                        </div>
 
-                    <div class="col-md-6" style="text-align:right">
-                        <p style="color:#373D3F">
-                            <span style="font-size:2em; vertical-align:middle">&nbsp;</span>
-                            <span style="font-size:1.5em; vertical-align:middle">{{route.tailPredictions()}} min &nbsp;</span>
-                        </p>
-                        
+                        <div class="col-md-6" style="text-align:right">
+                            <p style="color:#373D3F">
+                                <span style="font-size:2em; vertical-align:middle">&nbsp;</span>
+                                <span style="font-size:1.5em; vertical-align:middle">{{route.tailPredictions()}} min &nbsp;</span>
+                            </p>
+                            
+                        </div>
+                        <hr /> <br/>
                     </div>
-                    <hr /> <br/>
-                </div>
-                        
+                </span>
             </div>
         </div>
     </div>
@@ -38,7 +39,7 @@ import { Stop } from './stop';
 export class BusComponent implements OnInit{
 
     stops: Stop[] = [];
-    stopIds = ['1008'];
+    stopIds = ['1008','1056'];
 
     constructor(private http: Http){
         for (let stopId of this.stopIds){
