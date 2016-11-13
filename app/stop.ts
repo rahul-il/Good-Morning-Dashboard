@@ -13,9 +13,6 @@ export class Stop{
 
         let predictionsTag = <HTMLScriptElement[]><any>xmlDoc.getElementsByTagName("predictions");
 
-        console.log(JSON.stringify(xmlText));
-        console.log(xmlDoc);
-
         for (let prediction of predictionsTag){
             this.title = prediction.getAttribute("stopTitle");
 
