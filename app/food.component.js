@@ -21,7 +21,7 @@ var FoodComponent = (function () {
         this.knightEntrees = [
             { 'title': '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers'] },
             { 'title': 'Hamburger Bun 4"', 'entrees': ['Hamburger', 'Hot Dogs'] },
-            { 'title': 'Bbq Chicken Wings', 'entrees': ['Barbeque Chicken Wings', 'CHicken Nuggets', 'Honey Glazed Chicken Wings'] },
+            { 'title': 'Bbq Chicken Wings', 'entrees': ['Barbeque Chicken Wings', 'Chicken Nuggets', 'Honey Glazed Chicken Wings'] },
             { 'title': 'Chicken Parmesan Busch', 'entrees': ['Chicken Parmesan', 'Eggplant Parmesan', 'Italian Sausage'] },
             { 'title': 'Chicken Buffalo Wings Fresh', 'entrees': ['Buffalo Wings', 'Chicken Nuggets', 'Vegan Nuggets'] }
         ];
@@ -57,6 +57,16 @@ var FoodComponent = (function () {
         this.meals = [];
         var data = JSON.parse(text);
         var busch = this.getBusch(data);
+        if (!busch['meals'][0]['meal_avail']) {
+            this.meals.push({
+                'title': 'Lunch',
+                'entrees': ["Baked Haddock", "Fiery Fingers Chicken", "Italian Meatballs .5 Oz"]
+            });
+            this.meals.push({
+                'title': 'Dinner',
+                'entrees': ["Bacon Wrapped Maple Glazed Pork Loin", "Baked Breaded Pollock Fish", "Catch of the Day", "Coq Au Vin"]
+            });
+        }
         for (var _i = 0, _a = busch["meals"]; _i < _a.length; _i++) {
             var meal = _a[_i];
             if (meal['genres'] && ["Knight Room", "Lunch", "Dinner"].indexOf(meal["meal_name"]) > -1) {

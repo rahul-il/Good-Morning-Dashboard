@@ -31,7 +31,7 @@ export class FoodComponent implements OnInit{
     knightEntrees = [
         {'title' : '8" Hoagie Roll', 'entrees': ['Subs', 'Wraps', 'Chicken Fingers']},
         {'title' : 'Hamburger Bun 4"', 'entrees':  ['Hamburger', 'Hot Dogs']},
-        {'title' : 'Bbq Chicken Wings', 'entrees':  ['Barbeque Chicken Wings', 'CHicken Nuggets', 'Honey Glazed Chicken Wings']},
+        {'title' : 'Bbq Chicken Wings', 'entrees':  ['Barbeque Chicken Wings', 'Chicken Nuggets', 'Honey Glazed Chicken Wings']},
         {'title' : 'Chicken Parmesan Busch', 'entrees':  ['Chicken Parmesan', 'Eggplant Parmesan', 'Italian Sausage' ]},
         {'title' : 'Chicken Buffalo Wings Fresh', 'entrees':  ['Buffalo Wings', 'Chicken Nuggets', 'Vegan Nuggets']}
     ]
@@ -77,6 +77,17 @@ export class FoodComponent implements OnInit{
 
         let data = JSON.parse(text);
         let busch = this.getBusch(data);
+        
+        if (!busch['meals'][0]['meal_avail']){
+            this.meals.push({
+                'title': 'Lunch',
+                'entrees': ["Baked Haddock", "Fiery Fingers Chicken", "Italian Meatballs .5 Oz"]
+            });
+            this.meals.push({
+                'title': 'Dinner',
+                'entrees': ["Bacon Wrapped Maple Glazed Pork Loin", "Baked Breaded Pollock Fish", "Catch of the Day", "Coq Au Vin"]
+            });
+        }
 
         for (let meal of busch["meals"]){
 
