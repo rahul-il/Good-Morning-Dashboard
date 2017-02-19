@@ -78,7 +78,7 @@ export class FoodComponent implements OnInit{
         let data = JSON.parse(text);
         let busch = this.getBusch(data);
         
-        if (!busch['meals'][0]['meal_avail']){
+        if (!busch['meals'][1]['meal_avail']){
             this.meals.push({
                 'title': 'Lunch',
                 'entrees': ["Baked Haddock", "Fiery Fingers Chicken", "Italian Meatballs .5 Oz"]
